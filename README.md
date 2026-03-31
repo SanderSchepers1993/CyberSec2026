@@ -26,3 +26,17 @@ git clone https://github.com/SanderSchepers1993/CyberSec2026
 ```sh
 vagrant up
 ```
+
+## SSH naar de VM
+
+1. SSH vanuit de repository met de Vagrantfile naar de target VM
+
+```sh
+vagrant ssh target
+```
+
+2. SSH vanuit de repository met de Vagrantfile naar de target VM
+
+```sh
+vagrant ssh attacker
+```
