@@ -8,7 +8,7 @@ VMs:
     netmask: 255.255.255.0
     memory: 2048
     cpus: 2
-    provision: ./Target/install_debian
+    provision: ./Target/install_debian.sh
 
   # Attacker Server
   web:
@@ -18,4 +18,4 @@ VMs:
     netmask: 255.255.255.0
     memory: 2048
     cpus: 2
-    provision: ./Attacker/install_kali
+    provision: ./Attacker/install_kali.sh
