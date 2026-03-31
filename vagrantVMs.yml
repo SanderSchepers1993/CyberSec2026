@@ -3,7 +3,7 @@ VMs:
   # Target Server
   target:
     hostname: Target
-    box: debian/debian12
+    box: generic/debian12
     ip: 192.168.0.10
     netmask: 255.255.255.0
     memory: 2048
