@@ -1,7 +1,5 @@
 ﻿# CyberSec2026
 
-For the installation of our VMs, we have used vagrant
-
 ## Installation Vagrant
 
 1. https://developer.hashicorp.com/vagrant/install
