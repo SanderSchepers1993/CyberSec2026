@@ -1,39 +1,38 @@
 ﻿# CyberSec2026
 
-## Installation Vagrant
+## Voeg VBoxManage toe aan PATH
 
-1. https://developer.hashicorp.com/vagrant/install
-2. Follow the installation instructions for your OS.
+```powershell
+VBoxManage --version
+```
 
-## Installation Git
+Als VBoxManage niet gekend is, moet je deze nog toevoegen aan je omgevingsvariabelen.
+
+## Installatie Git
 
 1. https://git-scm.com/install/windows
-2. Follow the installation instructions for your OS.
+2. Volg de instructies voor jouw OS.
 
 ## Add the github repository to your Visual Studio Code
 
-1. Open a terminal (ctrl + ù) in VSC en kloon de github repository
+1. Open een terminal (ctrl + ù) in VSC en kloon de github repository
 
 ```sh
 git clone https://github.com/SanderSchepers1993/CyberSec2026
 ```
 
-3. Vanuit de directory met de vagrantfile, maak de VMs aan.
+## Start de VM installatie
 
-```sh
-vagrant up
+Vanuit de root directory, voer het volgende commando uit:
+
+```powershell
+./01_create_vms.ps1
 ```
 
-## SSH naar de VM
+## Post-installatie Debian target
 
-1. SSH vanuit de repository met de Vagrantfile naar de target VM
+- [Target/](./Target/README.md): Documentatie voor post-installatie
 
-```sh
-vagrant ssh target
-```
+## Post-installatie Kali attacker
 
-2. SSH vanuit de repository met de Vagrantfile naar de target VM
-
-```sh
-vagrant ssh attacker
-```
+- [Attacker/](./Attacker/README.md): Documentatie voor post-installatie

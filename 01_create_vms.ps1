@@ -8,8 +8,8 @@
 
 # --- CONFIGURATIE --- (Aan te passen voor eigen situatie !!!)
 $VBoxManage   = "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe"
-$DownloadDir  = "$env:USERPROFILE\Documents\NPEOpdracht\VDIs"
-$VMDir = "D:\VM's school"
+$DownloadDir  = "E:\HOGENT\2025-26\Semester III\CyberSec & Virt\VDI"
+$VMDir = "F:\CyberSec"
 
 # Netwerk: intern netwerk zodat VMs elkaar zien maar niet buiten
 $InternalNet  = "intnet"
@@ -134,24 +134,25 @@ Check-VBoxInstalled
 New-Item -ItemType Directory -Force -Path $DownloadDir | Out-Null
 
 # --- STAP 1: Debian 12 VDI downloaden en uitpakken ---
-$Debian7z  = Join-Path $DownloadDir "debian12.4.7z"
-$DebianVDI = Join-Path $DownloadDir "64bit\Debian 12.4.0 (64bit).vdi"
+# $Debian7z  = Join-Path $DownloadDir "64bit.7z"
+$DebianVDI = Join-Path $DownloadDir "Debian 12.4.0 (64bit).vdi"
 
-#Download-File $DebianVDI_URL $debian
+<# Download-File $DebianVDI_URL $debian
 
 if (-not (Test-Path $DebianVDI)) {
     Unzip-File $Debian7z $DownloadDir
 }
-
+#>
 # --- STAP 2: Kali Linux VDI downloaden en uitpakken ---
-$Kali7z  = Join-Path $DownloadDir "kali-linux.7z"
-$KaliVDI   = Join-Path $DownloadDir "kali-linux-2026.1-virtualbox-amd64\kali-linux-2026.1-virtualbox-amd64.vdi"
+# $Kali7z  = Join-Path $DownloadDir "kali-linux-2026.1-virtualbox-amd64.7z"
+$KaliVDI   = Join-Path $DownloadDir "kali-linux-2026.1-virtualbox-amd64.vdi"
 
-#Download-File $KaliVDI_URL $kali-linux
+<#Download-File $KaliVDI_URL $kali-linux
 
 if (-not (Test-Path $KaliVDI)) {
     Unzip-File $Kali7z $DownloadDir
 }
+#>
 
 # --- STAP 3: Debian VM aanmaken ---
 Create-VM $ServerVMName $ServerRAM_MB "Debian_64"
