@@ -1,5 +1,11 @@
 ﻿# CyberSec2026
 
+## Prerequisites
+
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Osboxes](https://sourceforge.net/projects/osboxes/files/v/vb/14-D-b/12.4.0/64bit.7z/download)
+- [Kali](https://cdimage.kali.org/kali-2026.1/kali-linux-2026.1-virtualbox-amd64.7z)
+
 ## Voeg VBoxManage toe aan PATH
 
 ```powershell

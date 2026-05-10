@@ -72,7 +72,7 @@ function Create-VM($name, $ramMB, $osType) {
     # Hardware configureren
     & $VBoxManage modifyvm $name `
         --memory $ramMB `
-        --vram 128 `
+        --vram 24 `
         --cpus 2 `
         --nic1 nat `
         --nic2 intnet --intnet2 $InternalNet `
