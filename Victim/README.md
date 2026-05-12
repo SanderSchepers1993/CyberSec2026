@@ -47,6 +47,8 @@ cd CyberSec2026/Victim
 sudo bash 01_setup_server.sh
 ```
 
+9. Ga verder met de postinstallatie van de [Attacker VM](/Attacker/README.md)
+
 ## [TROUBLESHOOTING]
 
 Indien je package openjdk-11-jdk niet kan vinden, kan je met onderstaande work-around nog steeds de exploit testen
@@ -78,5 +80,5 @@ ExecStart=/usr/bin/java --add-opens java.base/java.lang=ALL-UNNAMED -jar /opt/sp
 
 ```sh
 sudo systemctl daemon-reload
-sudo systemctl restart spring-gateway
+sudo systemctl restart spring-gateway.service
 ```

@@ -9,11 +9,13 @@
 
 1. Open een terminal
 
-[OPTIONEEL] Update naar laatste nieuwe release 2. Test of je een werkende internetverbinding hebt.
+2. Test of je een werkende internetverbinding hebt.
 
 ```sh
 ping 8.8.8.8
 ```
+
+[OPTIONEEL] Update naar laatste nieuwe release
 
 ```sh
 sudo apt-get update
@@ -36,3 +38,5 @@ cd CyberSec2026/Attacker
 ```sh
 sudo bash 01_kali_setup.sh
 ```
+
+5. Je bent nu klaar om [de exploit](../Exploit/) uit te voeren!
