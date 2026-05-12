@@ -12,7 +12,20 @@
 VBoxManage --version
 ```
 
-Als VBoxManage niet gekend is, moet je deze nog toevoegen aan de omgevingsvariabelen van je OS.
+- Als VBoxManage niet gekend is, moet je deze nog toevoegen aan de omgevingsvariabelen van je OS.
+- Ga naar Start, zoek vervolgens omgevingsvariabelen
+
+![omgevingsvariabelen](/images/omgevingsvariabelen.png)
+
+- Voeg de volgende lijn toe als omgevingsvariabele:
+
+```powershell
+C:\Program Files\Oracle\VirtualBox
+```
+
+![omgevingsvariabelen bewerken](/images/omgevingsvariabelen2.png)
+
+- Klik 2x op Ok en probeer vervolgens opnieuw.
 
 ## Installatie Git
 
