@@ -35,16 +35,16 @@ log "Systeem updaten..."
 apt-get update -qq
 apt-get upgrade -y -qq
  
-# --- STAP 2: Java 17 installeren ---
-log "Java 17 (OpenJDK) installeren..."
-apt-get install -y openjdk-17-jdk curl wget unzip git net-tools
+# --- STAP 2: Java 11 installeren ---
+log "Java 11 (OpenJDK) installeren..."
+apt-get install -y openjdk-11-jdk curl wget unzip git net-tools
  
-java -version 2>&1 | grep "17" && log "Java 11 OK" || err "Java 17 installatie mislukt"
+java -version 2>&1 | grep "11" && log "Java 11 OK" || err "Java 11 installatie mislukt"
  
-# Java 11 als standaard instellen
-update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 2>/dev/null || true
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-echo "export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> /etc/environment
+# Java 17 als standaard instellen
+update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java 2>/dev/null || true
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /etc/environment
  
 # --- STAP 3: SSH installeren en configureren ---
 log "SSH server installeren..."
@@ -60,12 +60,6 @@ if systemctl is-active --quiet ssh; then
 else
     warn "SSH server kon niet gestart worden. Controleer: systemctl status ssh"
 fi
- 
-# Optioneel: root login via SSH toestaan (handig in lab-omgeving)
-sed -i 's/^#*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
-systemctl restart ssh
-warn "SSH root login en wachtwoordauthenticatie ingeschakeld (LAB-ONLY, niet voor productie!)"
  
 # --- STAP 4: Maven installeren ---
 log "Maven installeren..."

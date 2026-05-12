@@ -8,6 +8,13 @@
 - password: kali
 
 1. Open een terminal
+
+[OPTIONEEL] Update naar laatste nieuwe release
+
+```sh
+sudo apt-get update
+```
+
 2. Kloon je configuratiebestanden voor Kali
 
 ```sh
