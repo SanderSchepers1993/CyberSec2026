@@ -39,23 +39,6 @@ function Check-VBoxInstalled {
     Write-Host "[OK] VirtualBox gevonden."
 }
 
-function Download-File($url, $dest) {
-    if (Test-Path $dest) {
-        Write-Host "[SKIP] Al gedownload: $dest"
-        return
-    }
-    Write-Host "[DOWNLOAD] $url"
-    Write-Host "        -> $dest"
-    $wc = New-Object System.Net.WebClient
-    $wc.DownloadFile($url, $dest)
-    Write-Host "[OK] Download klaar."
-}
-
-function Create-HostOnlyAdapter {
-    # Controleer of het interne netwerk al bestaat (VirtualBox internal = geen setup nodig)
-    Write-Host "[INFO] Intern netwerk '$InternalNet' wordt gebruikt (geen setup nodig bij VirtualBox internal network)."
-}
-
 function Create-VM($name, $ramMB, $osType) {
     Write-Host "`n[VM] Aanmaken: $name"
 
@@ -85,15 +68,6 @@ function Create-VM($name, $ramMB, $osType) {
     Write-Host "[OK] VM $name aangemaakt."
 }
 
-function Add-Disk($vmName, $diskPath, $sizeMB) {
-    Write-Host "[DISK] VDI aanmaken voor $vmName..."
-    if (Test-Path $diskPath) { Remove-Item $diskPath -Force }
-    & $VBoxManage createmedium disk --filename $diskPath --size $sizeMB --format VDI
-    & $VBoxManage storagectl $vmName --name "SATA" --add sata --controller IntelAhci
-    & $VBoxManage storageattach $vmName --storagectl "SATA" --port 0 --device 0 --type hdd --medium $diskPath
-    Write-Host "[OK] Schijf toegevoegd."
-}
-
 function Attach-VDI($vmName, $vdiPath) {
     Write-Host "[DISK] VDI koppelen aan $vmName..."
     
@@ -109,17 +83,6 @@ function Attach-VDI($vmName, $vdiPath) {
     Write-Host "[OK] VDI gekoppeld: $vdiPath"
 }
 
-function Unzip-File($archief, $uitvoerMap) {
-    $7zip = "C:\Program Files\7-Zip\7z.exe"
-    if (-not (Test-Path $7zip)) {
-        Write-Error "7-Zip niet gevonden. Installeer via: https://www.7-zip.org/"
-        exit 1
-    }
-    Write-Host "[UNZIP] Uitpakken: $archief"
-    & $7zip x $archief -o"$uitvoerMap" -y
-    Write-Host "[OK] Uitgepakt naar: $uitvoerMap"
-}
-
 # ============================================================
 # HOOFDSCRIPT
 # ============================================================
@@ -130,29 +93,11 @@ Write-Host "============================================"
 
 Check-VBoxInstalled
 
-# Download directory aanmaken
-New-Item -ItemType Directory -Force -Path $DownloadDir | Out-Null
-
-# --- STAP 1: Debian 12 VDI downloaden en uitpakken ---
-# $Debian7z  = Join-Path $DownloadDir "64bit.7z"
+# --- STAP 1: Debian 12 VDI locatie ---
 $DebianVDI = Join-Path $DownloadDir "Debian 12.4.0 (64bit).vdi"
 
-<# Download-File $DebianVDI_URL $debian
-
-if (-not (Test-Path $DebianVDI)) {
-    Unzip-File $Debian7z $DownloadDir
-}
-#>
-# --- STAP 2: Kali Linux VDI downloaden en uitpakken ---
-# $Kali7z  = Join-Path $DownloadDir "kali-linux-2026.1-virtualbox-amd64.7z"
+# --- STAP 2: Kali Linux VDI locatie ---
 $KaliVDI   = Join-Path $DownloadDir "kali-linux-2026.1-virtualbox-amd64.vdi"
-
-<#Download-File $KaliVDI_URL $kali-linux
-
-if (-not (Test-Path $KaliVDI)) {
-    Unzip-File $Kali7z $DownloadDir
-}
-#>
 
 # --- STAP 3: Debian VM aanmaken ---
 Create-VM $ServerVMName $ServerRAM_MB "Debian_64"
