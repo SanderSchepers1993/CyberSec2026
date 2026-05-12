@@ -50,6 +50,7 @@ sudo bash 01_setup_server.sh
 ## [TROUBLESHOOTING]
 
 Indien je package openjdk-11-jdk niet kan vinden, kan je met onderstaande work-around nog steeds de exploit testen
+
 ![Unable to find openjdk11](/images/openjdk11.png)
 
 1. Voer het script 02_setup_server_java17.sh uit met sudo privileges
@@ -58,7 +59,7 @@ Indien je package openjdk-11-jdk niet kan vinden, kan je met onderstaande work-a
 sudo bash 02_setup_server_java17.sh
 ```
 
-1. Pas je service aan met volgend commando
+2. Open je service met een teksteditor:
 
 ```sh
 sudo nano /etc/systemd/system/spring-gateway.service
