@@ -9,7 +9,11 @@
 
 1. Open een terminal
 
-[OPTIONEEL] Update naar laatste nieuwe release
+[OPTIONEEL] Update naar laatste nieuwe release 2. Test of je een werkende internetverbinding hebt.
+
+```sh
+ping 8.8.8.8
+```
 
 ```sh
 sudo apt-get update
