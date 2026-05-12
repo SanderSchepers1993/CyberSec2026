@@ -47,11 +47,13 @@ cd CyberSec2026/Victim
 sudo bash 01_setup_server.sh
 ```
 
+- Indien je problemen hebt met openjdk-11-jdk, zie TROUBLESHOOTING onderaan deze README.
+
 9. Ga verder met de postinstallatie van de [Attacker VM](/Attacker/README.md)
 
 ## [TROUBLESHOOTING]
 
-Indien je package openjdk-11-jdk niet kan vinden, kan je met onderstaande work-around nog steeds de exploit testen
+### Unable to locate package openjdk-11-jdk
 
 ![Unable to find openjdk11](/images/openjdk11.png)
 
@@ -61,7 +63,7 @@ Indien je package openjdk-11-jdk niet kan vinden, kan je met onderstaande work-a
 sudo bash 02_setup_server_java17.sh
 ```
 
-2. Open je service met een teksteditor:
+2. Open je spring-gateway service met een teksteditor:
 
 ```sh
 sudo nano /etc/systemd/system/spring-gateway.service
@@ -73,7 +75,8 @@ sudo nano /etc/systemd/system/spring-gateway.service
 ExecStart=/usr/bin/java --add-opens java.base/java.lang=ALL-UNNAMED -jar /opt/spring-gateway/target/vulnerable-gateway-1.0.0.jar
 ```
 
-- Java 17 blokkeert standaard het uitvoeren van externe java libraries
+- We maken nu de omgeving met Java 17 i.p.v. Java 11.
+- Java 17 blokkeert standaard het uitvoeren van externe java libraries.
 - Met het bovenstaande commando laat je java libraries buiten de Java-module toe om via reflection in java.lang te kijken.
 
 3. Herstart de service

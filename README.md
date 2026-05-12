@@ -3,8 +3,8 @@
 ## Prerequisites
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-- [Osboxes](https://sourceforge.net/projects/osboxes/files/v/vb/14-D-b/12.4.0/64bit.7z/download)
-- [Kali](https://cdimage.kali.org/kali-2026.1/kali-linux-2026.1-virtualbox-amd64.7z)
+- [Osboxes vdi](https://sourceforge.net/projects/osboxes/files/v/vb/14-D-b/12.4.0/64bit.7z/download)
+- [Kali vdi](https://cdimage.kali.org/kali-2026.1/kali-linux-2026.1-virtualbox-amd64.7z)
 
 ## Voeg VBoxManage toe aan PATH
 
@@ -12,7 +12,7 @@
 VBoxManage --version
 ```
 
-Als VBoxManage niet gekend is, moet je deze nog toevoegen aan je omgevingsvariabelen.
+Als VBoxManage niet gekend is, moet je deze nog toevoegen aan de omgevingsvariabelen van je OS.
 
 ## Installatie Git
 
@@ -21,7 +21,7 @@ Als VBoxManage niet gekend is, moet je deze nog toevoegen aan je omgevingsvariab
 
 ## Extract de zip files van Osboxes en Kali
 
-1. Let erop dat de locatie waarin je de vdi's uitpakt, overeen komt met de environment variables in [01_create_vms.ps1 > $DownloadDir](01_create_vms.ps1)
+1. Let erop dat de locatie waarin je de vdi's uitpakt, overeen komt met de environment variable "$DownloadDir" in [01_create_vms.ps1](01_create_vms.ps1)
 
 ## Kloon de GitHub repository
 
@@ -46,9 +46,9 @@ Vanuit je project directory, voer het volgende commando uit:
 ./01_create_vms.ps1
 ```
 
-## Post-installatie Debian target
+## Post-installatie Debian victim
 
-- [Target/](./Target/README.md): Documentatie voor post-installatie
+- [Victim/](./Victim/README.md): Documentatie voor post-installatie
 
 ## Post-installatie Kali attacker
 
