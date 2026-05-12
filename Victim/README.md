@@ -1,4 +1,4 @@
-# Target installatie
+# Victim installatie
 
 ## Start je VM op in VirtualBox
 
@@ -23,4 +23,16 @@ sudo apt install -y git
 
 ```sh
 git clone https://github.com/SanderSchepers1993/CyberSec2026.git
+```
+
+3. Ga naar de nieuw gekloonde Victim directory
+
+```sh
+cd CyberSec2026/Victim
+```
+
+4. Pas je IP instellingen aan
+
+```sh
+TODO
 ```

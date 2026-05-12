@@ -6,7 +6,7 @@
 #   - Kali Linux 2025.4 (attacker)
 # ============================================================
 
-# --- CONFIGURATIE --- (Aan te passen voor eigen situatie !!!)
+# --- OMGEVINGSVARIABELEN --- (Aan te passen voor eigen situatie !!!)
 $VBoxManage   = "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe"
 $DownloadDir  = "E:\HOGENT\2025-26\Semester III\CyberSec & Virt\VDI"
 $VMDir = "F:\CyberSec"

@@ -30,32 +30,6 @@ sudo apt-get update -qq
 sudo apt-get install -y python3-requests curl net-tools 2>/dev/null || \
     pip3 install requests
 
-# --- Netwerk configureren ---
-log "Intern netwerk configureren (eth1 -> 192.168.56.20)..."
-
-# Tweede interface vinden (VirtualBox internal network)
-IFACE=$(ip link | grep -E "^[0-9]+: e" | awk -F': ' '{print $2}' | grep -v "^eth0$\|^ens33$\|^enp0s3$" | head -1)
-if [ -z "$IFACE" ]; then
-    IFACE=$(ip link | grep -E "^[0-9]+: e" | awk -F': ' '{print $2}' | tail -1)
-fi
-
-info "Interface voor intern netwerk: $IFACE"
-sudo ip addr add 192.168.56.20/24 dev $IFACE 2>/dev/null || warn "IP al ingesteld of fout"
-sudo ip link set $IFACE up
-
-# --- Bestanden neerzetten ---
-LAB_DIR="$HOME/cve-2022-22947-lab"
-mkdir -p $LAB_DIR
-
-# Exploit scripts kopiëren als ze aanwezig zijn
-[ -f "03_exploit.py" ]    && cp 03_exploit.py $LAB_DIR/
-[ -f "04_exploit_loop.sh" ] && cp 04_exploit_loop.sh $LAB_DIR/ && chmod +x $LAB_DIR/04_exploit_loop.sh
-
-chmod +x $LAB_DIR/*.py 2>/dev/null || true
-chmod +x $LAB_DIR/*.sh 2>/dev/null || true
-
-log "Lab bestanden in: $LAB_DIR"
-
 # --- Verbinding testen ---
 VICTIM_IP="192.168.56.10"
 info "Verbinding testen met victim ($VICTIM_IP)..."
