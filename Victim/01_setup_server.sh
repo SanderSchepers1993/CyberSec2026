@@ -31,9 +31,9 @@ if [ "$EUID" -ne 0 ]; then
 fi
  
 # --- STAP 1: Systeem updaten ---
-log "Systeem updaten..."
-apt-get update -qq
-apt-get upgrade -y -qq
+#log "Systeem updaten..."
+#apt-get update -qq
+#apt-get upgrade -y -qq
  
 # --- STAP 2: Java 11 installeren ---
 log "Java 11 (OpenJDK) installeren..."
