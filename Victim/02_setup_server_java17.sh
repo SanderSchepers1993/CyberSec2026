@@ -41,38 +41,17 @@ apt-get install -y openjdk-17-jdk curl wget unzip git net-tools
  
 java -version 2>&1 | grep "17" && log "Java 17 OK" || err "Java 17 installatie mislukt"
  
-# Java 11 als standaard instellen
+# Java 17 als standaard instellen
 update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java 2>/dev/null || true
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 echo "export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> /etc/environment
  
-# --- STAP 3: SSH installeren en configureren ---
-log "SSH server installeren..."
-apt-get install -y openssh-server
- 
-# SSH inschakelen en starten
-systemctl enable ssh
-systemctl start ssh
- 
-# Controleer of SSH draait
-if systemctl is-active --quiet ssh; then
-    log "SSH server actief op poort 22"
-else
-    warn "SSH server kon niet gestart worden. Controleer: systemctl status ssh"
-fi
- 
-# Optioneel: root login via SSH toestaan (handig in lab-omgeving)
-sed -i 's/^#*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-sed -i 's/^#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
-systemctl restart ssh
-warn "SSH root login en wachtwoordauthenticatie ingeschakeld (LAB-ONLY, niet voor productie!)"
- 
-# --- STAP 4: Maven installeren ---
+# --- STAP 3: Maven installeren ---
 log "Maven installeren..."
 apt-get install -y maven
 mvn -version | grep "Apache Maven" && log "Maven OK" || err "Maven installatie mislukt"
  
-# --- STAP 5: Spring Cloud Gateway 3.1.0 project aanmaken ---
+# --- STAP 4: Spring Cloud Gateway 3.1.0 project aanmaken ---
 log "Spring Cloud Gateway 3.1.0 project aanmaken..."
  
 APP_DIR="/opt/spring-gateway"
@@ -209,7 +188,7 @@ mvn clean package -DskipTests -q
 JAR_FILE=$(find target -name "*.jar" | head -1)
 log "JAR gebouwd: $JAR_FILE"
  
-# --- STAP 6: Systemd service aanmaken ---
+# --- STAP 5: Systemd service aanmaken ---
 log "Systemd service aanmaken..."
  
 cat > /etc/systemd/system/spring-gateway.service << EOF
@@ -236,7 +215,7 @@ systemctl start spring-gateway
  
 sleep 5
  
-# --- STAP 7: Netwerk configureren ---
+# --- STAP 6: Netwerk configureren ---
 log "Netwerk configureren (statisch IP op eth1)..."
  
 # Voeg statisch IP toe voor intern netwerk (adapter 2 = eth1 in VirtualBox)
@@ -254,7 +233,7 @@ EOF
  
 ifup $IFACE 2>/dev/null || ip addr add 192.168.56.10/24 dev $IFACE || warn "Herstart voor IP-configuratie"
  
-# --- STAP 8: Verificatie ---
+# --- STAP 7: Verificatie ---
 log "Service status controleren..."
 sleep 3
  
